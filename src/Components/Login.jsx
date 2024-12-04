@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { authContext } from './AuthProvider/AuthProvider';
+import { authContext } from '../AuthProvider/AuthProvider';
 import { FcGoogle } from 'react-icons/fc';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
@@ -41,7 +41,7 @@ const Login = () => {
         navigate("/")
       })
       .catch(error=>{
-        // console.log("ERROR",error);
+        console.log("ERROR",error);
       })
     }
     return (
@@ -79,7 +79,7 @@ const Login = () => {
         </div>
       </form>
       
-      <p className='ml-5 mb-5 mr-3'>New to this website? Please <button className='btn btn-sm bg-blue-600 text-white'><NavLink to="/signUp">SignUp</NavLink></button></p>
+      <p className='ml-5 mb-5 mr-3'>New to this website? Please <button className='btn btn-sm bg-blue-600 text-white'><NavLink to="/register">Register</NavLink></button></p>
       <div className='flex justify-center items-center'>
       <button onClick={handleLogin} className='flex items-center justify-center'> <FcGoogle size={40} ></FcGoogle>Login with Google</button>
       
