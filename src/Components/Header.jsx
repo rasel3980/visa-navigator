@@ -2,6 +2,7 @@ import React, { useContext, useState, useRef, useEffect } from 'react';
 import { NavLink, } from 'react-router-dom';
 import { authContext } from '../AuthProvider/AuthProvider';
 import { FaUser } from 'react-icons/fa';
+import { Typewriter } from 'react-simple-typewriter'
 
 const Header = () => {
   const { user, handleLogout } = useContext(authContext);
@@ -69,7 +70,17 @@ const Header = () => {
               {Links()}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">Visa Navigator</a>
+          <a className="btn btn-ghost text-xl">
+          <Typewriter
+            words={["Visa Navigator"]}
+            loop={Infinity}
+            cursor
+            cursorStyle="_"
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={1000}
+          />
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
