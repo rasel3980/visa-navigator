@@ -9,10 +9,10 @@ const MyAddedVisas = () => {
 
   const [data, setData] = useState();
   useEffect(() => {
-    fetch(`http://localhost:5000/my-visa/${user?.email}`)
+    fetch(`https://visa-navigator-crud.vercel.app/my-visa/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setData(data);
       });
   }, [user]);
@@ -29,7 +29,7 @@ const MyAddedVisas = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/visa-delete/${id}`, {
+        fetch(`https://visa-navigator-crud.vercel.app/visa-delete/${id}`, {
           method: "DELETE",
         });
         Swal.fire({

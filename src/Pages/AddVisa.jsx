@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import Swal from 'sweetalert2'
+import { Fade } from "react-awesome-reveal";
+
 import { authContext } from '../AuthProvider/AuthProvider';
 
 const AddVisa = () => {
@@ -20,9 +22,9 @@ const AddVisa = () => {
       const email = user.email;
         const newVisa = {country_image,country_name,visa_type,processing_time,description,age_restriction,fee,validity,application_method,email};
 
-        console.log(newVisa);
+        // console.log(newVisa);
 
-        fetch('http://localhost:5000/visa',{
+        fetch('https://visa-navigator-crud.vercel.app/visa',{
             method:"POST",
             headers:{
                 'content-type':'application/json'
@@ -45,7 +47,10 @@ const AddVisa = () => {
     }
     return (
         <div className="container mx-auto p-4">
-      <h2 className="text-3xl font-bold text-center mb-4">Enter Your Visa Information </h2>
+      <h2 className="text-3xl font-bold text-center mb-4"><Fade>
+      Enter Your Visa Information
+    </Fade> </h2>
+      
       <form onSubmit={handleAddVisa} className="space-y-4">
         <div className="form-control">
           <label className="label">Country Image</label>

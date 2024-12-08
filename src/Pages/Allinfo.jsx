@@ -49,7 +49,7 @@ const Allinfo = ({ detail }) => {
       email,
     };
 
-    fetch("http://localhost:5000/myappliedvsia", {
+    fetch("https://visa-navigator-crud.vercel.app/myappliedvsia", {
       method: "POST",
       headers: {
         "content-type": "application/json",

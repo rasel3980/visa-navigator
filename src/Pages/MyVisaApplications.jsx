@@ -8,10 +8,10 @@ const MyVisaApplications = () => {
 
    
   useEffect(() => {
-    fetch(`http://localhost:5000/my-application/${user?.email}`)
+    fetch(`https://visa-navigator-crud.vercel.app/my-application/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setData(data);
       });
   }, [user]);

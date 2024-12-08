@@ -35,7 +35,7 @@ const handleUpdate = (e)=>{
       const email = user.email;
         const updatedVisa = {country_image,country_name,visa_type,processing_time,description,age_restriction,fee,validity,application_method,email};
 
-        fetch(`http://localhost:5000/update-visa/${_id}`, {
+        fetch(`https://visa-navigator-crud.vercel.app/update-visa/${_id}`, {
           method: "PUT",
           headers: {
             "content-type": "application/json",
@@ -44,7 +44,7 @@ const handleUpdate = (e)=>{
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+            // console.log(data);
             if (data.modifiedCount>0) {
               Swal.fire({
                 position: "top-center",
