@@ -21,7 +21,6 @@ const Allinfo = ({ detail }) => {
     application_method,
   } = detail;
 
-  // Get the current date in MM/DD/YYYY format
   const currentDate = new Date().toLocaleDateString();
 
   const handleSubmit = (e) => {
@@ -29,8 +28,8 @@ const Allinfo = ({ detail }) => {
     const form = e.target;
     const firstName = form.firstName.value;
     const lastName = form.lastName.value;
-    const appliedDate = form.appliedDate.value;  // Current date from the form
-    const fee = form.fee.value;  // Optional, use the default fee if not provided
+    const appliedDate = form.appliedDate.value;  
+    const fee = form.fee.value;  
     const email = form.email.value;
 
     const applyData = {

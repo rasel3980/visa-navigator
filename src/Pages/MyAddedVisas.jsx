@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { key } from "localforage";
 
 const MyAddedVisas = () => {
@@ -9,7 +9,7 @@ const MyAddedVisas = () => {
 
   const [data, setData] = useState();
   useEffect(() => {
-    fetch(`https://visa-navigator-crud.vercel.app/my-visa/${user?.email}`)
+    fetch(`http://localhost:5000/my-visa/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -29,7 +29,7 @@ const MyAddedVisas = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://visa-navigator-crud.vercel.app/visa-delete/${id}`, {
+        fetch(`http://localhost:5000/visa-delete/${id}`, {
           method: "DELETE",
         });
         Swal.fire({
@@ -47,45 +47,59 @@ const MyAddedVisas = () => {
   return (
     <div>
       MyAddedVisas email : {user?.email} data : {data?.length}
-      <div className="grid grid-cols-4 gap-4">
-        {data?.map((da) => (
-          <div>
-            <div>
-              <div className="card bg-base-100 h-full shadow-xl">
-                <figure className="px-10 pt-10">
-                  <img
-                    src={da?.country_image}
-                    // alt={country_name}
-                    className="rounded-xl"
-                  />
-                </figure>
-                <div className="card-body items-center text-center">
-                  <h2 className="card-title">{da?.country_name}</h2>
-                  <p>{da?.visa_type}</p>
-                  {/* <p>Fee: {fee} USD</p>
-                  <div className="card-actions">
-                    <NavLink to="/visa details">
-                      <button className="btn btn-primary">See Details</button>
-                    </NavLink>
-                  </div> */}
-
-                  <div className="card-actions">
-                    <button
-                      onClick={() => {
-                        handleDelete(da._id);
-                      }}
-                      className="btn btn-primary"
-                    >
-                      delete
-                    </button>
-                    <Link to={`/update-visa/${da._id}`}>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {data?.map((dt) => (
+          <div className="card bg-base-100 mx-auto shadow-xl p-6">
+          <figure>
+            <img
+              src={dt.country_image}
+              alt={dt.country_name}
+              className="rounded-xl w-full h-56 object-cover"
+            />
+          </figure>
+          <div className="card-body">
+            <div className="flex justify-center mb-4">
+              <h2 className="card-title text-2xl font-semibold">{dt.country_name}</h2>
+            </div>
+            <p className="font-bold mb-2">Visa Type: {dt.visa_type}</p>
+            
+            <div className="mt-2">
+              <span className="font-bold">Processing Time: </span>
+              {dt.processing_time}
+            </div>
+            <div className="mt-2">
+              <span className="font-bold">Age Restriction: </span>
+              {dt.age_restriction} years
+            </div>
+            <div className="mt-2">
+              <span className="font-bold">Fee: </span>
+              {dt.fee}
+            </div>
+            <div className="mt-2">
+              <span className="font-bold">Validity: </span>
+              {dt.validity}
+            </div>
+            <div className="mt-2">
+              <span className="font-bold">Application Method: </span>
+              {dt.application_method}
+            </div>
+            <div className="card-actions justify-between mt-6">
+            <Link to={`/update-visa/${dt._id}`}>
                       <button className="btn btn-primary">update</button>
                     </Link>
-                  </div>
-                </div>
-              </div>
+              <NavLink to="">
+              <button
+                onClick={() => {
+                  handleDelete(dt._id);
+                }}
+                className="btn bg-red-600 hover:btn-primary text-white"
+              >
+                Delete
+              </button>
+              </NavLink>
             </div>
           </div>
+        </div>
         ))}
       </div>
     </div>
