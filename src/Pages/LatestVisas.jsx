@@ -64,7 +64,7 @@ const LatestVisas = () => {
               </div>
 
               <div className="card-actions justify-end mt-6">
-                <NavLink to="">
+                <NavLink to={`/visa-details/${dt._id}`}>
                   <button className="btn btn-primary">See Details</button>
                 </NavLink>
               </div>
@@ -72,11 +72,7 @@ const LatestVisas = () => {
           </div>
         )}
       </div>
-      <div className="text-center my-8">
-        <NavLink to="/all visas">
-          <button className="btn btn-secondary font-bold">See Details</button>
-        </NavLink>
-      </div>
+
     </>
   );
 };

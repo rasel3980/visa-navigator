@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink, useLoaderData } from 'react-router-dom';
 import { authContext } from '../AuthProvider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const MyVisaApplications = () => {
     const {user} = useContext(authContext);
@@ -16,7 +17,34 @@ const MyVisaApplications = () => {
       });
   }, [user]);
 
+  const handleCancel = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Cancel it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/visa-delete/${id}`, {
+          method: "DELETE",
+        });
+        Swal.fire({
+          title: "Cancelled!",
+          text: "Your file has been Cancelled.",
+          icon: "success",
+        });
+
+        const remaining = data.filter((info) => info._id !== id);
+        setData(remaining);
+      }
+    });
+  };
+
     return (
+        <div className='w-11/12 mx-auto my-10'>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {data?.map((dt) => (
           <div className="card bg-base-100 mx-auto shadow-xl p-6">
@@ -69,7 +97,9 @@ const MyVisaApplications = () => {
             <div className="card-actions justify-end mt-6">
               <NavLink to="">
               <button
-                
+                onClick={() => {
+                    handleCancel(dt._id);
+                  }}
                 className="btn bg-red-600 hover:bg-red-800 text-white"
               >
                 Cancel
@@ -79,6 +109,7 @@ const MyVisaApplications = () => {
           </div>
         </div>
         ))}
+      </div>
       </div>
     );
 };

@@ -68,7 +68,7 @@ const Allinfo = ({ detail }) => {
         }
       });
 
-    setIsOpenModal(false); // Close modal after submission
+    setIsOpenModal(false);
   };
 
   return (

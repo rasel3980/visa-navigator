@@ -38,7 +38,7 @@ const Banner = () => {
         <SwiperSlide>
           <div className="flex justify-center items-center w-full h-full">
             <img
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover rounded-xl"
               src={slider1}
               alt="Homework image"
             />
@@ -47,7 +47,7 @@ const Banner = () => {
         <SwiperSlide>
           <div className="flex justify-center items-center w-full h-full">
             <img
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover rounded-xl"
               src={slider2}
               alt="Online Spanish learning"
             />
@@ -56,7 +56,7 @@ const Banner = () => {
         <SwiperSlide>
           <div className="flex justify-center items-center w-full h-full">
             <img
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover rounded-xl"
               src={slider3}
               alt="Online Spanish learning"
             />

@@ -6,7 +6,7 @@ import VisaTips from '../Pages/VisaTips';
 
 const Home = () => {
     return (
-        <div>
+        <div className='w-11/12 mx-auto'>
             <Banner></Banner>
             <LatestVisas></LatestVisas>
             <VisaNewsSection></VisaNewsSection>

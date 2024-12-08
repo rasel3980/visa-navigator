@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import { Link, NavLink } from "react-router-dom";
-import { key } from "localforage";
 
 const MyAddedVisas = () => {
   const { user } = useContext(authContext);
@@ -12,7 +11,7 @@ const MyAddedVisas = () => {
     fetch(`http://localhost:5000/my-visa/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         setData(data);
       });
   }, [user]);
@@ -45,8 +44,7 @@ const MyAddedVisas = () => {
   };
 
   return (
-    <div>
-      MyAddedVisas email : {user?.email} data : {data?.length}
+    <div className="w-11/12 mx-auto my-10">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {data?.map((dt) => (
           <div className="card bg-base-100 mx-auto shadow-xl p-6">
