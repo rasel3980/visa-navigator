@@ -11,6 +11,7 @@ import MyVisaApplications from '../Pages/MyVisaApplications';
 import VisaDetails from '../Pages/VisaDetails';
 import UserApply from '../Pages/UserApply';
 import Update from '../Pages/Update';
+import PrivateRoute from '../Components/PrivateRoute/PrivateRoute';
 
 
 const Router = createBrowserRouter([
@@ -38,7 +39,7 @@ const Router = createBrowserRouter([
             },
             {
                 path:"/add visa",
-                element:<AddVisa></AddVisa>
+                element:<PrivateRoute><AddVisa></AddVisa></PrivateRoute>
             },
             {
                 path:"/update-visa/:id",
