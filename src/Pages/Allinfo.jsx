@@ -114,7 +114,7 @@ const Allinfo = ({ detail }) => {
 
           <div className="card-actions justify-end mt-6">
             <button
-              onClick={() => setIsOpenModal(true)} // Open the modal
+              onClick={() => setIsOpenModal(true)} 
               className="btn btn-primary"
             >
               Apply Now

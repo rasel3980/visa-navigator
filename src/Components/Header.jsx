@@ -33,7 +33,7 @@ const Header = () => {
         <li><NavLink to="/all visas">All visas</NavLink></li>
         <li><NavLink to="/add visa">Add Visa</NavLink></li>
         <li><NavLink to="/my add visas">My added visas</NavLink></li>
-        <li><NavLink to="/my visa application">My Visa applications</NavLink></li>
+        <li><NavLink to="/my-visa-application">My Visa applications</NavLink></li>
         {!user && (
           <>
             <li><NavLink to="/login">Login</NavLink></li>
