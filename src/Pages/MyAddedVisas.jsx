@@ -73,7 +73,7 @@ const MyAddedVisas = () => {
             </div>
             <div className="mt-2">
               <span className="font-bold">Fee: </span>
-              {dt.fee}
+              {dt.fee} USD
             </div>
             <div className="mt-2">
               <span className="font-bold">Validity: </span>
