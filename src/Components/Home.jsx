@@ -2,15 +2,15 @@ import React from 'react';
 import Banner from './Banner';
 import LatestVisas from '../Pages/LatestVisas';
 import VisaNewsSection from '../Pages/VisaNewsSection';
-import TopCountriesSection from '../Pages/TopCountriesSection';
+import VisaTips from '../Pages/VisaTips';
 
 const Home = () => {
     return (
         <div>
             <Banner></Banner>
             <LatestVisas></LatestVisas>
-            <TopCountriesSection></TopCountriesSection>
             <VisaNewsSection></VisaNewsSection>
+            <VisaTips></VisaTips>
 
         </div>
     );

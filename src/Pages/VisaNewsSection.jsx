@@ -23,7 +23,7 @@ const VisaNewsSection = () => {
         {
           title: "Special Visas",
           description:
-            "India now offers special visas for medical tourism. Read how to apply.",
+            "India now offers special visas for official. Read how to apply.",
           date: "November 30, 2024",
         },
       ];
