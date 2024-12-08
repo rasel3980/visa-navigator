@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Swal from 'sweetalert2'
+import { authContext } from '../AuthProvider/AuthProvider';
 
 const AddVisa = () => {
+  const {user} = useContext(authContext);
+
     const handleAddVisa=(e)=>{
         e.preventDefault();
         const form = e.target;
@@ -14,8 +17,8 @@ const AddVisa = () => {
         const fee = form.fee.value;
         const validity = form.validity.value;
         const application_method = form.application_method.value;
-
-        const newVisa = {country_image,country_name,visa_type,processing_time,description,age_restriction,fee,validity,application_method};
+      const email = user.email;
+        const newVisa = {country_image,country_name,visa_type,processing_time,description,age_restriction,fee,validity,application_method,email};
 
         console.log(newVisa);
 
@@ -28,7 +31,7 @@ const AddVisa = () => {
         })
         .then(res=> res.json())
         .then(data=>{
-            console.log(data);
+            // console.log(data);
             if(data.insertedId){
                 Swal.fire({
                     title: 'Success!',
