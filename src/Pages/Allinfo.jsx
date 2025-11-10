@@ -73,7 +73,7 @@ const Allinfo = ({ detail }) => {
 
   return (
     <div className="container mx-auto p-4">
-      <div className="card bg-base-100 w-full md:w-[600px] mx-auto shadow-xl p-6">
+      <div className="bg-accent w-full md:w-[600px] hover:shadow-2xl hover:shadow-red-500 rounded mx-auto p-6">
         <figure>
           <img
             src={country_image}
@@ -114,7 +114,7 @@ const Allinfo = ({ detail }) => {
           <div className="card-actions justify-end mt-6">
             <button
               onClick={() => setIsOpenModal(true)} 
-              className="btn btn-primary"
+              className="btn bg-yellow-500 hover:bg-accent hover:text-black text-white w-full py-2 rounded-lg transition duration-300"
             >
               Apply Now
             </button>
@@ -189,7 +189,7 @@ const Allinfo = ({ detail }) => {
                 >
                   Close
                 </button>
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn bg-yellow-500 hover:bg-accent hover:text-black text-white w-full py-2 rounded-lg transition duration-300">
                   Apply
                 </button>
               </div>

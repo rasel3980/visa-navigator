@@ -91,7 +91,7 @@ const Login = () => {
         success && <p className='text-green-600 text-lg ml-20'>Login Successfully</p>
       }
     </div>
-    
+    ``
   </div>
   
 </div>

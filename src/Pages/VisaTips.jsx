@@ -38,7 +38,7 @@ const VisaTips = () => {
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-r mb-10 rounded-xl from-blue-400 to-indigo-600">
+    <section className="py-16 mb-10 rounded-xl ">
       <div className="container mx-auto px-6 text-white">
         <h2 className="text-4xl font-extrabold text-center mb-10">Visa Application Tips & FAQs</h2>
         <div className="mb-10">

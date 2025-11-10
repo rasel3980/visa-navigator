@@ -12,7 +12,6 @@ const MyVisaApplications = () => {
       fetch(`https://visa-navigator-crud.vercel.app/my-application/${user?.email}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setData(data);
         });
     }
@@ -50,7 +49,7 @@ const MyVisaApplications = () => {
         <h1 className="text-center text-3xl font-bold mb-8 text-gray-800">My Visa Applications</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {data?.map((dt) => (
-            <div className="card bg-indigo-50 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-lg">
+            <div className="card bg-indigo-50 shadow-xl hover:shadow-2xl hover:shadow-red-700 transition-all duration-300 rounded-lg">
               <figure>
                 <img
                   src={dt.country_image}
@@ -77,7 +76,7 @@ const MyVisaApplications = () => {
                   <NavLink to="">
                     <button
                       onClick={() => handleCancel(dt._id)}
-                      className="btn bg-red-600 hover:bg-red-800 text-white w-full sm:w-auto mt-4"
+                      className="btn bg-yellow-500 hover:bg-accent hover:text-black text-white w-full py-2 rounded-lg transition duration-300"
                     >
                       Cancel Application
                     </button>

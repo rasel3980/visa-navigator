@@ -34,7 +34,7 @@ const Router = createBrowserRouter([
             {
                 path:"/all visas",
                 element:<AllVisas></AllVisas>,
-                loader: ()=>fetch('http://localhost:5000/visa')
+                loader: ()=>fetch('https://visa-navigator-crud.vercel.app/visa')
                 
             },
             {
@@ -44,17 +44,17 @@ const Router = createBrowserRouter([
             {
                 path:"/update-visa/:id",
                 element:<Update></Update>,
-                loader: ({params})=>fetch(`http://localhost:5000/vis/${params.id}`),
+                loader: ({params})=>fetch(`https://visa-navigator-crud.vercel.app/vis/${params.id}`),
             },
             {
                 path:"/my add visas",
                 element:<PrivateRoute><MyAddedVisas></MyAddedVisas></PrivateRoute>,
-                // loader: ()=>fetch(`http://localhost:5000/${}`)
+                // loader: ()=>fetch(`https://visa-navigator-crud.vercel.app/${}`)
             },
             {
                 path:"/my-visa-application",
                 element:<PrivateRoute><MyVisaApplications></MyVisaApplications></PrivateRoute>,
-                // loader: ()=> fetch('http://localhost:5000/my-application'),
+                // loader: ()=> fetch('https://visa-navigator-crud.vercel.app/my-application'),
             },
             {
                 path:"/user apply",
@@ -63,7 +63,7 @@ const Router = createBrowserRouter([
             {
                 path:"/visa-details/:id",
                 element:<PrivateRoute><VisaDetails></VisaDetails></PrivateRoute>,
-                loader: ({params})=>fetch(`http://localhost:5000/vis/${params.id}`),
+                loader: ({params})=>fetch(`https://visa-navigator-crud.vercel.app/vis/${params.id}`),
             }
         ]
     }

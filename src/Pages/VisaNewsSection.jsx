@@ -29,7 +29,7 @@ const VisaNewsSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-r my-10 rounded-lg from-teal-400 to-blue-500">
+    <section className="py-16 my-10 rounded-lg">
       <div className="container mx-auto px-4 text-white">
         <h2 className="text-4xl font-extrabold text-center mb-10">Visa News & Updates</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">

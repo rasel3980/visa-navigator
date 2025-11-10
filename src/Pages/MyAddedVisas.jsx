@@ -9,10 +9,9 @@ const MyAddedVisas = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/my-visa/${user?.email}`)
+      fetch(`https://visa-navigator-crud.vercel.app/my-visa/${user?.email}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setData(data);
         });
     }
@@ -30,7 +29,7 @@ const MyAddedVisas = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/visa-delete/${id}`, {
+        fetch(`https://visa-navigator-crud.vercel.app/visa-delete/${id}`, {
           method: "DELETE",
         });
         Swal.fire({
@@ -46,10 +45,10 @@ const MyAddedVisas = () => {
   };
 
   return (
-    <div className="w-11/12 mx-auto my-10">
+    <div className="px-12 py-10 bg-gray-100">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {data?.map((dt) => (
-          <div key={dt._id} className="card bg-gradient-to-r from-blue-100 via-blue-200 to-blue-300 shadow-xl p-6 hover:shadow-2xl transition-all duration-300 rounded-lg">
+          <div key={dt._id} className="card bg-gradient-to-r from-blue-100 via-blue-200 to-blue-300 shadow-xl p-6 hover:shadow-red-700 transition-all duration-300 rounded-lg">
             <figure>
               <img
                 src={dt.country_image}
@@ -58,26 +57,26 @@ const MyAddedVisas = () => {
               />
             </figure>
             <div className="card-body">
-              <div className="flex justify-center mb-4">
+              <div className="flex justify-center">
                 <h2 className="card-title text-2xl font-semibold text-gray-800">{dt.country_name}</h2>
               </div>
-              <p className="font-bold mb-2 text-gray-700">Visa Type: {dt.visa_type}</p>
-              <div className="mt-2 text-gray-600">
+              <p className="font-bold text-gray-700">Visa Type: {dt.visa_type}</p>
+              <div className="text-gray-600">
                 <span className="font-bold">Processing Time: </span>{dt.processing_time}
               </div>
-              <div className="mt-2 text-gray-600">
+              <div className="text-gray-600">
                 <span className="font-bold">Age Restriction: </span>{dt.age_restriction} years
               </div>
-              <div className="mt-2 text-gray-600">
+              <div className="text-gray-600">
                 <span className="font-bold">Fee: </span>{dt.fee} USD
               </div>
-              <div className="mt-2 text-gray-600">
+              <div className="text-gray-600">
                 <span className="font-bold">Validity: </span>{dt.validity}
               </div>
-              <div className="mt-2 text-gray-600">
+              <div className="text-gray-600">
                 <span className="font-bold">Application Method: </span>{dt.application_method}
               </div>
-              <div className="card-actions justify-between mt-6">
+              <div className="card-actions justify-between">
                 <Link to={`/update-visa/${dt._id}`}>
                   <button className="btn btn-primary bg-indigo-600 text-white hover:bg-indigo-700 transition duration-300 ease-in-out">
                     Update

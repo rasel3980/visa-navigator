@@ -44,8 +44,8 @@ const AddVisa = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 flex items-center justify-center">
-      <div className="container mx-auto p-6 max-w-3xl bg-white rounded-lg shadow-xl">
+    <div className="min-h-screen bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 flex items-center justify-center py-8">
+      <div className="container mx-auto p-6 max-w-3xl bg-gray-200 rounded-lg shadow-xl">
         <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
           <Fade>Enter Your Visa Information</Fade>
         </h2>
@@ -170,7 +170,7 @@ const AddVisa = () => {
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary w-full mt-6 hover:bg-blue-600 transition duration-300">
+          <button type="submit" className="btn bg-yellow-500 hover:bg-accent hover:text-black text-white w-full py-2 rounded-lg transition duration-300">
             Add Visa
           </button>
         </form>

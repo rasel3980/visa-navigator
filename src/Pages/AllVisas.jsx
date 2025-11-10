@@ -6,8 +6,8 @@ const AllVisas = () => {
     const visas = useLoaderData();
     
     return (
-        <div className='w-11/12 mx-auto my-12'>
-            <div className='grid grid-cols-4 gap-8'>
+        <div className='px-12 bg-gray-200 py-12'>
+            <div className='grid md:grid-cols-3 grid-cols-1 md:gap-4'>
             {
                 visas.map(visa=><VisaCard key={visa._id} visa={visa}></VisaCard>)
             }

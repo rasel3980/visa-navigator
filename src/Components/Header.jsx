@@ -70,7 +70,7 @@ const Header = () => {
               {Links()}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">
+          <a className="btn btn-ghost text-3xl">
           <Typewriter
             words={["Visa Navigator"]}
             loop={Infinity}

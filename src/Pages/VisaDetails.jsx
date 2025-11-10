@@ -5,7 +5,7 @@ const VisaDetails = () => {
   const details = useLoaderData();
 //   console.log(details);
   return (
-    <div>
+    <div className="bg-slate-300">
       <Allinfo detail={details}></Allinfo>
     </div>
   );
