@@ -1,19 +1,24 @@
 import React, { useContext, useState, useRef, useEffect } from 'react';
-import { NavLink, } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { authContext } from '../AuthProvider/AuthProvider';
 import { FaUser } from 'react-icons/fa';
-import { Typewriter } from 'react-simple-typewriter'
+import { Typewriter } from 'react-simple-typewriter';
 
 const Header = () => {
-  const { user, handleLogout } = useContext(authContext);
-  const [isClicked, setIsClicked] = useState(false);
-  const dropdownRef = useRef(null);
-  const Dropdown = () => {
-    setIsClicked(prevState => !prevState);
+  const auth = useContext(authContext);
+  const user = auth?.user;
+  const handleLogout = auth?.handleLogout;
+
+  const [isClicked, setIsClicked] = useState<boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const Dropdown = (): void => {
+    setIsClicked((prevState: boolean) => !prevState);
   };
+
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent): void => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsClicked(false);
       }
     };
@@ -25,9 +30,7 @@ const Header = () => {
     };
   }, []);
 
-
-
-  const Links = () => {
+  const Links = (): React.ReactElement => {
     return (
       <>
         <li><NavLink to="/">Home</NavLink></li>
@@ -71,15 +74,15 @@ const Header = () => {
             </ul>
           </div>
           <a className="btn btn-ghost text-3xl">
-          <Typewriter
-            words={["Visa Navigator"]}
-            loop={Infinity}
-            cursor
-            cursorStyle="_"
-            typeSpeed={70}
-            deleteSpeed={50}
-            delaySpeed={1000}
-          />
+            <Typewriter
+              words={["Visa Navigator"]}
+              loop={0}
+              cursor
+              cursorStyle="_"
+              typeSpeed={70}
+              deleteSpeed={50}
+              delaySpeed={1000}
+            />
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -90,10 +93,10 @@ const Header = () => {
         <div className="navbar-end">
           {user ? (
             <div className="relative mr-2" ref={dropdownRef}>
-              <NavLink>
+              <NavLink to="#">
                 <img
                   className="w-10 rounded-full cursor-pointer"
-                  src={user?.photoURL}
+                  src={user?.photoURL ?? ''}
                   alt="userPhoto"
                   onClick={Dropdown}
                 />
@@ -102,7 +105,7 @@ const Header = () => {
               {isClicked && (
                 <div className="absolute bg-white shadow-lg rounded-md p-2 mt-2 right-0 w-48 z-10">
                   <div className="grid items-center">
-                    <span>{user?.displayName || 'Username'}</span>
+                    <span>{user?.displayName ?? 'Username'}</span>
                     <button
                       onClick={handleLogout}
                       className="text-red-500 hover:text-red-700 text-sm"

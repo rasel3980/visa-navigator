@@ -1,24 +1,39 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+interface Visa {
+  _id: string;
+  country_image: string;
+  country_name: string;
+  visa_type: string;
+  processing_time: string;
+  age_restriction: string;
+  fee: string;
+  validity: string;
+  application_method: string;
+}
 
 const MyAddedVisas = () => {
-  const { user } = useContext(authContext);
-  const [data, setData] = useState([]);
+  const auth = useContext(authContext);
+  const user = auth?.user;
+  const [data, setData] = useState<Visa[]>([]);
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`https://visa-navigator-crud.vercel.app/my-visa/${user?.email}`)
+      fetch(`https://visa-navigator-crud.vercel.app/my-visa/${user.email}`)
         .then((res) => res.json())
-        .then((data) => {
+        .then((data: Visa[]) => {
           setData(data);
+        })
+        .catch((error: Error) => {
+          console.log("ERROR", error);
         });
     }
   }, [user]);
 
-  // handleDelete
-  const handleDelete = (id) => {
+  const handleDelete = (id: string): void => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -31,15 +46,19 @@ const MyAddedVisas = () => {
       if (result.isConfirmed) {
         fetch(`https://visa-navigator-crud.vercel.app/visa-delete/${id}`, {
           method: "DELETE",
-        });
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
-        });
-
-        const remaining = data.filter((info) => info._id !== id);
-        setData(remaining);
+        })
+          .then(() => {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+            const remaining = data.filter((info: Visa) => info._id !== id);
+            setData(remaining);
+          })
+          .catch((error: Error) => {
+            console.log("ERROR", error);
+          });
       }
     });
   };
@@ -47,8 +66,11 @@ const MyAddedVisas = () => {
   return (
     <div className="px-12 py-10 bg-gray-100">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {data?.map((dt) => (
-          <div key={dt._id} className="card bg-gradient-to-r from-blue-100 via-blue-200 to-blue-300 shadow-xl p-6 hover:shadow-red-700 transition-all duration-300 rounded-lg">
+        {data.map((dt: Visa) => (
+          <div
+            key={dt._id}
+            className="card bg-gradient-to-r from-blue-100 via-blue-200 to-blue-300 shadow-xl p-6 hover:shadow-red-700 transition-all duration-300 rounded-lg"
+          >
             <figure>
               <img
                 src={dt.country_image}
@@ -58,7 +80,9 @@ const MyAddedVisas = () => {
             </figure>
             <div className="card-body">
               <div className="flex justify-center">
-                <h2 className="card-title text-2xl font-semibold text-gray-800">{dt.country_name}</h2>
+                <h2 className="card-title text-2xl font-semibold text-gray-800">
+                  {dt.country_name}
+                </h2>
               </div>
               <p className="font-bold text-gray-700">Visa Type: {dt.visa_type}</p>
               <div className="text-gray-600">
