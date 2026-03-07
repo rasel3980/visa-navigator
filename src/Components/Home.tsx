@@ -6,13 +6,11 @@ import VisaTips from "../Pages/VisaTips";
 
 const Home = () => {
   return (
-    <div>
-      <Banner></Banner>
-      <div className="px-12 bg-gradient-to-r from-teal-500 to-blue-600">
-        <LatestVisas></LatestVisas>
-        <VisaNewsSection></VisaNewsSection>
-        <VisaTips></VisaTips>
-      </div>
+    <div className="bg-gray-50">
+      <Banner />
+      <LatestVisas />
+      <VisaNewsSection />
+      <VisaTips />
     </div>
   );
 };
