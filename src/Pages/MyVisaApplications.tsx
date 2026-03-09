@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { authContext } from '../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
+import Loading from './Loading';
 
 interface VisaApplication {
   _id: string;
@@ -102,9 +103,7 @@ const MyVisaApplications = () => {
           </div>
         </div>
         {loading && (
-          <div className="flex justify-center items-center py-24">
-            <div className="w-10 h-10 border-4 border-indigo-200 border-t-indigo-500 rounded-full animate-spin" />
-          </div>
+          <Loading></Loading>
         )}
         {!loading && filtered.length === 0 && (
           <div className="flex flex-col items-center justify-center py-24 text-center">

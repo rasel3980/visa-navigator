@@ -42,9 +42,7 @@ const AddVisa = () => {
 
     fetch('https://visa-navigator-crud.vercel.app/visa', {
       method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
+      headers: { 'content-type': 'application/json' },
       body: JSON.stringify(newVisa),
     })
       .then((res) => res.json())
@@ -54,6 +52,7 @@ const AddVisa = () => {
             title: 'Success!',
             text: 'Visa added successfully!',
             icon: 'success',
+            confirmButtonColor: '#6366f1',
             confirmButtonText: 'Cool',
           });
           form.reset();
@@ -64,128 +63,97 @@ const AddVisa = () => {
       });
   };
 
-  return (
-    <div className="min-h-screen bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 flex items-center justify-center py-8">
-      <div className="container mx-auto p-6 max-w-3xl bg-gray-200 rounded-lg shadow-xl">
-        <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
-          <Fade>Enter Your Visa Information</Fade>
-        </h2>
+  const inputClass = "w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 outline-none transition-all text-sm text-gray-800 placeholder-gray-300 bg-gray-50 focus:bg-white";
+  const labelClass = "block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5";
 
-        <form onSubmit={handleAddVisa} className="space-y-6">
-          <div className="form-control">
-            <label className="label text-gray-700">Country Image</label>
-            <input
-              type="url"
-              name="country_image"
-              className="input input-bordered w-full bg-white text-gray-700 placeholder-gray-500"
-              placeholder="Paste image URL here"
-              required
-            />
+  return (
+    <div className="min-h-screen bg-gray-50 py-12 px-4">
+      <div className="max-w-2xl mx-auto">
+        <Fade>
+          <div className="text-center mb-10">
+            <h1 className="text-3xl font-extrabold text-gray-900">Add a New Visa</h1>
+            <p className="text-gray-400 text-sm mt-2">Fill in the details below to list a new visa</p>
           </div>
-          <div className="form-control">
-            <label className="label text-gray-700">Country Name</label>
-            <input
-              type="text"
-              name="country_name"
-              className="input input-bordered w-full bg-white text-gray-700 placeholder-gray-500"
-              placeholder="Enter country name"
-              required
-            />
+        </Fade>
+        <div className="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
+          <div className="h-1 w-full bg-indigo-500" />
+
+          <div className="p-8">
+            <form onSubmit={handleAddVisa} className="space-y-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className={labelClass}>Country Image URL</label>
+                  <input type="url" name="country_image" placeholder="paste image url" className={inputClass} required />
+                </div>
+                <div>
+                  <label className={labelClass}>Country Name</label>
+                  <input type="text" name="country_name" placeholder="" className={inputClass} required />
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className={labelClass}>Visa Type</label>
+                  <select name="visa_type" className={inputClass}>
+                    <option value="Tourist Visa">Tourist Visa</option>
+                    <option value="Student Visa">Student Visa</option>
+                    <option value="Official Visa">Official Visa</option>
+                  </select>
+                </div>
+                <div>
+                  <label className={labelClass}>Processing Time</label>
+                  <input type="text" name="processing_time" placeholder="" className={inputClass} required />
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                  <label className={labelClass}>Fee (USD)</label>
+                  <input type="number" name="fee" placeholder="" className={inputClass} required />
+                </div>
+                <div>
+                  <label className={labelClass}>Age Restriction</label>
+                  <input type="number" name="age_restriction" placeholder="" className={inputClass} required />
+                </div>
+                <div>
+                  <label className={labelClass}>Validity</label>
+                  <input type="text" name="validity" placeholder="" className={inputClass} required />
+                </div>
+              </div>
+              <div>
+                <label className={labelClass}>Application Method</label>
+                <input type="text" name="application_method" placeholder="" className={inputClass} required />
+              </div>
+              <div>
+                <label className={labelClass}>Required Documents</label>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-1">
+                  {['Valid Passport', 'Visa Application Form', 'Recent Passport-Sized Photograph'].map((doc) => (
+                    <label key={doc} className="flex items-center gap-2.5 px-4 py-3 bg-gray-50 border border-gray-200 hover:border-indigo-300 hover:bg-indigo-50 rounded-xl cursor-pointer transition-all group">
+                      <input type="checkbox" value={doc} className="w-4 h-4 accent-indigo-500 flex-shrink-0" />
+                      <span className="text-gray-500 group-hover:text-indigo-600 text-xs font-medium transition-colors leading-tight">{doc}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <label className={labelClass}>Description</label>
+                <textarea
+                  name="description"
+                  placeholder="Enter a detailed description..."
+                  rows={4}
+                  className={`${inputClass} resize-none`}
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full py-3.5 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-xl transition-all duration-200 hover:-translate-y-0.5 shadow-md shadow-indigo-100 text-sm mt-2"
+              >
+                Add Visa →
+              </button>
+
+            </form>
           </div>
-          <div className="form-control">
-            <label className="label text-gray-700">Visa Type</label>
-            <select
-              name="visa_type"
-              className="select select-bordered w-full bg-white text-gray-700"
-            >
-              <option value="Tourist Visa">Tourist Visa</option>
-              <option value="Student Visa">Student Visa</option>
-              <option value="Official Visa">Official Visa</option>
-            </select>
-          </div>
-          <div className="form-control">
-            <label className="label text-gray-700">Processing Time</label>
-            <input
-              type="text"
-              name="processing_time"
-              className="input input-bordered w-full bg-white text-gray-700 placeholder-gray-500"
-              placeholder="Enter processing time"
-              required
-            />
-          </div>
-          <div className="form-control">
-            <label className="label text-gray-700">Required Documents</label>
-            <div className="flex flex-col space-y-2">
-              {['Valid Passport', 'Visa Application Form', 'Recent Passport-Sized Photograph'].map(
-                (doc: string) => (
-                  <label key={doc} className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
-                      value={doc}
-                      className="checkbox checkbox-accent"
-                    />
-                    <span className="text-gray-700">{doc}</span>
-                  </label>
-                )
-              )}
-            </div>
-          </div>
-          <div className="form-control">
-            <label className="label text-gray-700">Description</label>
-            <textarea
-              name="description"
-              className="textarea textarea-bordered w-full bg-white text-gray-700 placeholder-gray-500"
-              placeholder="Enter a detailed description"
-              required
-            />
-          </div>
-          <div className="form-control">
-            <label className="label text-gray-700">Age Restriction</label>
-            <input
-              type="number"
-              name="age_restriction"
-              className="input input-bordered w-full bg-white text-gray-700 placeholder-gray-500"
-              placeholder="Enter age restriction"
-              required
-            />
-          </div>
-          <div className="form-control">
-            <label className="label text-gray-700">Visa Fee</label>
-            <input
-              type="number"
-              name="fee"
-              className="input input-bordered w-full bg-white text-gray-700 placeholder-gray-500"
-              placeholder="Enter visa fee"
-              required
-            />
-          </div>
-          <div className="form-control">
-            <label className="label text-gray-700">Validity</label>
-            <input
-              type="text"
-              name="validity"
-              className="input input-bordered w-full bg-white text-gray-700 placeholder-gray-500"
-              placeholder="Enter validity"
-              required
-            />
-          </div>
-          <div className="form-control">
-            <label className="label text-gray-700">Application Method</label>
-            <input
-              type="text"
-              name="application_method"
-              className="input input-bordered w-full bg-white text-gray-700 placeholder-gray-500"
-              placeholder="Enter application method"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="btn bg-yellow-500 hover:bg-accent hover:text-black text-white w-full py-2 rounded-lg transition duration-300"
-          >
-            Add Visa
-          </button>
-        </form>
+        </div>
+
       </div>
     </div>
   );
