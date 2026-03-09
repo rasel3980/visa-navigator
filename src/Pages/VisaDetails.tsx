@@ -19,7 +19,7 @@ const VisaDetails = () => {
   const details = useLoaderData() as VisaDetail;
 
   return (
-    <div className="bg-slate-300">
+    <div className="min-h-screen bg-gray-50">
       <Allinfo detail={details} />
     </div>
   );
